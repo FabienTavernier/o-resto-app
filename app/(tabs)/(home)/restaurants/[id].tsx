@@ -1,11 +1,13 @@
-import { useLocalSearchParams } from 'expo-router';
-import { StyleSheet, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { useLocalSearchParams, useRouter } from 'expo-router';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 
 import { useRestaurants } from '@/contexts/RestaurantContext';
 
 import ThemedText from '@/components/basics/ThemedText';
 
 export default function RestaurantDetailsScreen() {
+  const router = useRouter();
   const { restaurants } = useRestaurants();
 
   // je vais cherche l'ID dans les paramètres d'URL
@@ -23,6 +25,14 @@ export default function RestaurantDetailsScreen() {
 
   return (
     <View style={styles.container}>
+      <TouchableOpacity
+        style={[styles.back, styles.p]}
+        onPress={() => router.back()}
+      >
+        <Ionicons name="arrow-back" color="#fff" />
+        <ThemedText style={styles.backText}>Retour à l'accueil</ThemedText>
+      </TouchableOpacity>
+
       <View>
         <ThemedText style={styles.title}>{restaurant.name}</ThemedText>
 
@@ -48,6 +58,20 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: 'Chivo-900',
     fontSize: 55,
+    textTransform: 'uppercase',
+  },
+  back: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    gap: 8,
+
+    padding: 8,
+
+    backgroundColor: '#000',
+  },
+  backText: {
+    color: '#fff',
+    fontSize: 13,
     textTransform: 'uppercase',
   },
 });

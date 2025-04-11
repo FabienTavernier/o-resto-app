@@ -92,3 +92,36 @@ C'est une route à segment dynamique, je veux la route : `/restaurants/42`…
 2. j'ajoute ma route, l'écran au layout
 3. je crée mon interface
 4. au clic sur une carte, j'affiche les détails
+
+### Retour à l'accueil
+
+Soit je veux le style de base et j'affiche le `header`
+
+```tsx
+import { Stack } from 'expo-router';
+
+export default function HomeLayout() {
+  return (
+    <Stack
+      screenOptions={{
+        headerShown: false,
+        headerBackVisible: false,
+      }}
+    >
+      <Stack.Screen name="index" />
+      <Stack.Screen name="restaurants" options={{ headerShown: true }} />
+    </Stack>
+  );
+}
+```
+
+Soit je personnalise l'apparence et je crée moi-même un bouton
+
+```tsx
+<TouchableOpacity style={[styles.back, styles.p]} onPress={() => router.back()}>
+  <Ionicons name="arrow-back" color="#fff" />
+  <ThemedText style={styles.backText}>
+    Retour à l'accueil
+  </ThemedText>
+</TouchableOpacity>
+```
