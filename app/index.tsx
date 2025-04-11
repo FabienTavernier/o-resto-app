@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
+import RestaurantProvider from '@/contexts/RestaurantContext';
 import HomeScreen from '@/screens/HomeScreen';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -26,5 +27,9 @@ export default function Index() {
     return null;
   }
 
-  return <HomeScreen />;
+  return (
+    <RestaurantProvider>
+      <HomeScreen />
+    </RestaurantProvider>
+  );
 }

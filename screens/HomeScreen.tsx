@@ -1,14 +1,16 @@
 import { FlatList, StyleSheet, View } from 'react-native';
 
+import { useRestaurants } from '@/contexts/RestaurantContext';
+
 import ThemedText from '@/components/basics/ThemedText';
 
 import Header from '@/components/Header';
 import RestaurantCard from '@/components/RestaurantCard';
 import SearchBar from '@/components/SearchBar';
 
-import { restaurants } from '@/data/restaurants';
-
 export default function HomeScreen() {
+  const { restaurants } = useRestaurants();
+
   return (
     <View style={[styles.root, styles.container]}>
       <Header />
