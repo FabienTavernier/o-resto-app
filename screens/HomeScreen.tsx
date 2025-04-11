@@ -16,8 +16,15 @@ export default function HomeScreen() {
   const [query, setQuery] = useState('');
 
   // FILTRE en fonction de `query`
-  const filteredRestaurants = restaurants?.filter((r) =>
-    r.city.name.toLocaleLowerCase().includes(query.toLocaleLowerCase()),
+  const filteredRestaurants = restaurants?.filter(
+    (r) =>
+      r.city.name
+        .toLocaleLowerCase()
+        .includes(query.toLocaleLowerCase()) || // par ville
+      r.name.toLocaleLowerCase().includes(query.toLocaleLowerCase()) || // par nom
+      r.cuisines.some((style) =>
+        style.label.toLocaleLowerCase().includes(query.toLocaleLowerCase()),
+      ), // par cuisine
   );
 
   return (

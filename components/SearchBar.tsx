@@ -30,7 +30,7 @@ export default function SearchBar({ setQuery }: SearchBarProps) {
     <View style={styles.form}>
       <TextInput
         style={styles.input}
-        placeholder="Rechercher par ville…"
+        placeholder="Rechercher un restaurant…"
         placeholderTextColor="#000"
         value={searchValue}
         onChangeText={setSearchValue}
@@ -40,7 +40,7 @@ export default function SearchBar({ setQuery }: SearchBarProps) {
 
       <Pressable
         accessibilityRole="button"
-        accessibilityLabel="Rechercher les restaurants dans une ville"
+        accessibilityLabel="Rechercher les restaurants par ville, nom ou cuisine"
         style={styles.button}
         onPress={handleSubmit}
       >
