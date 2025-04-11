@@ -9,10 +9,21 @@ type SearchBarProps = {
 
 export default function SearchBar({ setQuery }: SearchBarProps) {
   const [searchValue, setSearchValue] = useState('');
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   function handleSubmit() {
     Keyboard.dismiss();
-    setQuery(searchValue);
+
+    if (isSubmitted || !searchValue.trim()) {
+      // je nettoie le formulaire (reset)
+      setIsSubmitted(false);
+      setSearchValue('');
+      setQuery('');
+    } else {
+      // je soumets le formulaire
+      setQuery(searchValue.trim());
+      setIsSubmitted(true);
+    }
   }
 
   return (
@@ -23,6 +34,7 @@ export default function SearchBar({ setQuery }: SearchBarProps) {
         placeholderTextColor="#000"
         value={searchValue}
         onChangeText={setSearchValue}
+        onFocus={() => setIsSubmitted(false)} // je repasse en mode recherche
         autoCapitalize="characters" // force le clavier en majuscules
       />
 
@@ -32,7 +44,11 @@ export default function SearchBar({ setQuery }: SearchBarProps) {
         style={styles.button}
         onPress={handleSubmit}
       >
-        <Ionicons name="search" size={20} color="#fff" />
+        <Ionicons
+          name={!isSubmitted ? 'search' : 'close'}
+          size={20}
+          color="#fff"
+        />
       </Pressable>
     </View>
   );
