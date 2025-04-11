@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 
 import { useFonts } from 'expo-font';
+import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 
 import FavoriteProvider from '@/contexts/FavoriteContext';
 import RestaurantProvider from '@/contexts/RestaurantContext';
-import HomeScreen from '@/screens/HomeScreen';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -31,7 +31,15 @@ export default function Index() {
   return (
     <RestaurantProvider>
       <FavoriteProvider>
-        <HomeScreen />
+        <Stack>
+          {/*
+            Écran pour définir mes onglets
+            → je lui dit d'aller voir le layout dans le dossier `(tabs)`
+
+            Note : les parenthèses rendent le dossier « invisible » dans l'URL 
+          */}
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        </Stack>
       </FavoriteProvider>
     </RestaurantProvider>
   );
