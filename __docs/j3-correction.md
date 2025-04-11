@@ -83,3 +83,12 @@ de l'accueil, _ie_ l'onglet doit être activé.
    ```
 
 3. `(tabs)/(home)/_layout.tsx` → définition des écrans ; j'y déplace `index.tsx`
+
+### Route vers le détails
+
+C'est une route à segment dynamique, je veux la route : `/restaurants/42`…
+
+1. je crée la structure en conséquence → `app/(tabs)/home()/restaurants/[id].tsx`
+2. j'ajoute ma route, l'écran au layout
+3. je crée mon interface
+4. au clic sur une carte, j'affiche les détails

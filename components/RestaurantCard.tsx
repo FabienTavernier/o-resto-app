@@ -1,3 +1,4 @@
+import { useRouter } from 'expo-router';
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { Ionicons } from '@expo/vector-icons';
@@ -17,13 +18,15 @@ export default function RestaurantCard({
   restaurant,
   isOdd,
 }: RestaurantCardProps) {
+  const router = useRouter();
+
   return (
     <TouchableOpacity
       style={[
         styles.card,
         { backgroundColor: isOdd ? '#FA6C1D' : 'transparent' },
       ]}
-      onPress={() => Alert.alert('Pressed!')}
+      onPress={() => router.push(`/restaurants/${restaurant.id}`)}
     >
       <View style={styles.container}>
         <View style={[styles.row, styles.between]}>
