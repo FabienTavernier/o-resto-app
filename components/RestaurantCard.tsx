@@ -6,6 +6,8 @@ import type { Restaurant } from '@/@types';
 
 import ThemedText from './basics/ThemedText';
 
+import FavoriteButton from './FavoriteButton';
+
 type RestaurantCardProps = {
   restaurant: Restaurant;
   isOdd: boolean;
@@ -61,13 +63,17 @@ export default function RestaurantCard({
           ))}
         </View>
 
-        <ThemedText accessibilityLabel={`situé à ${restaurant.city.name}`}>
-          {restaurant.city.name}
+        <View style={[styles.row, styles.between]}>
+          <ThemedText accessibilityLabel={`situé à ${restaurant.city.name}`}>
+            {restaurant.city.name}
 
-          <ThemedText style={styles.small}>
-            {` (${restaurant.city.postal_code})`}
+            <ThemedText style={styles.small}>
+              {` (${restaurant.city.postal_code})`}
+            </ThemedText>
           </ThemedText>
-        </ThemedText>
+
+          <FavoriteButton />
+        </View>
       </View>
     </TouchableOpacity>
   );
