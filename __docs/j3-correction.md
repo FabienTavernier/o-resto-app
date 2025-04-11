@@ -57,3 +57,29 @@ je déplace le fichier depuis `screen/` et je renomme…
 
 Ressemble beaucoup à l'accueil : je dois juste filtrer la liste des restaurants
 en fonctions de mon tableau de favoris.
+
+## Router > détail d'un restaurant
+
+Au clic sur un `<RestaurantCard>`, je veux ouvrir une nouvelle page affichant
+les détails d'un restaurant.
+
+Je veux une navigation en stack et que la page de détail soit une « sous-page »
+de l'accueil, _ie_ l'onglet doit être activé.
+
+`(tabs)/index` va donc être responsable de plusieurs écrans, j'en fait un dossier. Dans celui-ci, je définis ma _stack navigation_ dans un layout.
+
+1. dossier `app/(tabs)/(home)`
+
+2. l'onglet doit cibler ce dossier → `(tabs)/_layout.tsx`
+
+    ```tsx
+    <Tabs.Screen
+      name="(home)" // je cible le layout de `(home)`
+      options={{
+        title: 'Accueil',
+        tabBarIcon: ({ color }) => <Ionicons size={26} name="home" color={color} />,
+      }}
+    />
+   ```
+
+3. `(tabs)/(home)/_layout.tsx` → définition des écrans ; j'y déplace `index.tsx`

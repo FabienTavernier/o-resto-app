@@ -13,7 +13,7 @@ export default function TabLayout() {
     >
       {/* 1er onglet = Accueil qui doit être dans un fichier `app/(tabs)/index.tsx` */}
       <Tabs.Screen
-        name="index" // nom du fichier
+        name="(home)" // nom du fichier
         options={{
           title: 'Accueil',
           tabBarIcon: ({ color }) => (
