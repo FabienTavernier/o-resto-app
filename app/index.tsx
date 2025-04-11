@@ -4,6 +4,8 @@ import { StyleSheet, View } from 'react-native';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
+import ThemedText from '@/components/basics/ThemedText';
+
 import Header from '@/components/Header';
 import SearchBar from '@/components/SearchBar';
 
@@ -34,6 +36,8 @@ export default function Index() {
 
       <View>
         <SearchBar />
+
+        <ThemedText style={styles.title}>Liste des restaurants</ThemedText>
       </View>
     </View>
   );
@@ -43,5 +47,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#ebebeb',
+  },
+  title: {
+    marginBottom: 24,
   },
 });
