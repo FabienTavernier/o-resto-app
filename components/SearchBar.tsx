@@ -1,19 +1,36 @@
-import { Ionicons } from '@expo/vector-icons';
-import { Pressable, StyleSheet, TextInput, View } from 'react-native';
+import { useState } from 'react';
+import { Keyboard, Pressable, StyleSheet, TextInput, View } from 'react-native';
 
-export default function SearchBar() {
+import { Ionicons } from '@expo/vector-icons';
+
+type SearchBarProps = {
+  setQuery: React.Dispatch<React.SetStateAction<string>>;
+};
+
+export default function SearchBar({ setQuery }: SearchBarProps) {
+  const [searchValue, setSearchValue] = useState('');
+
+  function handleSubmit() {
+    Keyboard.dismiss();
+    setQuery(searchValue);
+  }
+
   return (
     <View style={styles.form}>
       <TextInput
         style={styles.input}
         placeholder="Rechercher par ville…"
         placeholderTextColor="#000"
+        value={searchValue}
+        onChangeText={setSearchValue}
+        autoCapitalize="characters" // force le clavier en majuscules
       />
 
       <Pressable
         accessibilityRole="button"
         accessibilityLabel="Rechercher les restaurants dans une ville"
         style={styles.button}
+        onPress={handleSubmit}
       >
         <Ionicons name="search" size={20} color="#fff" />
       </Pressable>
