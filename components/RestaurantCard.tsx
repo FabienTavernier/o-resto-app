@@ -72,7 +72,7 @@ export default function RestaurantCard({
             </ThemedText>
           </ThemedText>
 
-          <FavoriteButton />
+          <FavoriteButton restaurantId={restaurant.id} />
         </View>
       </View>
     </TouchableOpacity>
