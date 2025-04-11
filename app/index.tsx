@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
+import FavoriteProvider from '@/contexts/FavoriteContext';
 import RestaurantProvider from '@/contexts/RestaurantContext';
 import HomeScreen from '@/screens/HomeScreen';
 
@@ -29,7 +30,9 @@ export default function Index() {
 
   return (
     <RestaurantProvider>
-      <HomeScreen />
+      <FavoriteProvider>
+        <HomeScreen />
+      </FavoriteProvider>
     </RestaurantProvider>
   );
 }
