@@ -1,16 +1,9 @@
 import { useEffect } from 'react';
-import { FlatList, StyleSheet, View } from 'react-native';
 
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
-import ThemedText from '@/components/basics/ThemedText';
-
-import Header from '@/components/Header';
-import RestaurantCard from '@/components/RestaurantCard';
-import SearchBar from '@/components/SearchBar';
-
-import { restaurants } from '@/data/restaurants';
+import HomeScreen from '@/screens/HomeScreen';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -33,41 +26,5 @@ export default function Index() {
     return null;
   }
 
-  return (
-    <View style={[styles.root, styles.container]}>
-      <Header />
-
-      <View style={styles.content}>
-        <SearchBar />
-
-        <ThemedText style={styles.title}>Liste des restaurants</ThemedText>
-
-        <View style={styles.container}>
-          <FlatList
-            data={restaurants}
-            renderItem={({ item, index }) => (
-              <RestaurantCard restaurant={item} isOdd={index % 2 !== 0} />
-            )}
-            keyExtractor={(item) => `${item.id}`}
-          />
-        </View>
-      </View>
-    </View>
-  );
+  return <HomeScreen />;
 }
-
-const styles = StyleSheet.create({
-  root: {
-    backgroundColor: '#ebebeb',
-  },
-  container: {
-    flex: 1,
-    paddingHorizontal: 4,
-  },
-  content: {
-    flex: 1,
-  },
-  title: {
-    marginBottom: 24,
-  },
-});
