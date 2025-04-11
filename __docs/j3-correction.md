@@ -24,3 +24,5 @@ Cela permettra de partager une seule source de vérité dans toute notre applica
 5. je veux pouvoir ajouter/supprimer un favori
     - je crée une fonction `toggleFavorite`
     - je la diffuse pour la rendre accessible dans l'application
+
+6. utilisation dans `<FavoriteButton />`
