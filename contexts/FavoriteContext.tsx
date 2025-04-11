@@ -3,6 +3,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 
 type FavoriteContextType = {
   favorites: number[];
+  toggleFavorite: (restaurantId: number) => void;
 };
 
 type FavoriteProviderProps = { children: React.ReactNode };
@@ -33,8 +34,19 @@ export default function FavoriteProvider({ children }: FavoriteProviderProps) {
     loadFavorites();
   }, [storage]);
 
+  // Ajouter ou supprimer un restaurant des favoris
+  async function toggleFavorite(restaurantId: number) {
+    const updatedFavorites = favorites.includes(restaurantId)
+      ? favorites.filter((id) => id !== restaurantId)
+      : [...favorites, restaurantId];
+
+    setFavorites(updatedFavorites);
+
+    await storage.setItem(JSON.stringify(updatedFavorites));
+  }
+
   return (
-    <FavoriteContext.Provider value={{ favorites }}>
+    <FavoriteContext.Provider value={{ favorites, toggleFavorite }}>
       {children}
     </FavoriteContext.Provider>
   );

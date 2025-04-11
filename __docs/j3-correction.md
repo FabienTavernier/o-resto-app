@@ -20,3 +20,7 @@ Cela permettra de partager une seule source de vérité dans toute notre applica
 3. _hook_ personnalisé pour garantir la non-nullité des favoris
 
 4. diffusion du contexte
+
+5. je veux pouvoir ajouter/supprimer un favori
+    - je crée une fonction `toggleFavorite`
+    - je la diffuse pour la rendre accessible dans l'application
