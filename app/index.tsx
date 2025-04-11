@@ -1,15 +1,42 @@
-import { Text, View } from 'react-native';
+import { useEffect } from 'react';
+import { StyleSheet, View } from 'react-native';
+
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+
+import Header from '@/components/Header';
+
+// Prevent the splash screen from auto-hiding before asset loading is complete.
+SplashScreen.preventAutoHideAsync();
 
 export default function Index() {
+  const [loaded] = useFonts({
+    BrutalSolid: require('../assets/fonts/Brutal-Solid.otf'),
+    'Chivo-100': require('../assets/fonts/chivo-v18-latin-100.ttf'),
+    'Chivo-400': require('../assets/fonts/chivo-v18-latin-regular.ttf'),
+    'Chivo-900': require('../assets/fonts/chivo-v18-latin-900.ttf'),
+  });
+
+  useEffect(() => {
+    if (loaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [loaded]);
+
+  if (!loaded) {
+    return null;
+  }
+
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
+    <View style={styles.container}>
+      <Header />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#ebebeb',
+  },
+});
