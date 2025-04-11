@@ -5,6 +5,7 @@ import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
 import Header from '@/components/Header';
+import SearchBar from '@/components/SearchBar';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -30,6 +31,10 @@ export default function Index() {
   return (
     <View style={styles.container}>
       <Header />
+
+      <View>
+        <SearchBar />
+      </View>
     </View>
   );
 }
